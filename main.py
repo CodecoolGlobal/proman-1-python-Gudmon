@@ -1,11 +1,18 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, redirect, url_for, request, flash, session
 from dotenv import load_dotenv
 from util import json_response
 import mimetypes
 import queries
+import os
+import datetime
+import re
+import util
+import data_manager
 
 mimetypes.add_type('application/javascript', '.js')
 app = Flask(__name__)
+app.secret_key = os.environ.get("SECRET_KEY")
+app.permanent_session_lifetime = datetime.timedelta(minutes=1)
 load_dotenv()
 
 @app.route("/")
@@ -33,6 +40,96 @@ def get_cards_for_board(board_id: int):
     :param board_id: id of the parent board
     """
     return queries.get_cards_for_board(board_id)
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+        username = request.form.get('username')
+        original_password = request.form.get('password')
+        is_username_taken = data_manager.get_user_by_username(request.form.get('username'))
+        username_regex = re.compile(r'[A-Za-z0-9]+')
+
+        if is_username_taken:
+            flash('Username already exists, please choose another one!')
+            return render_template('register.html')
+
+        if not request.form.get("username") or not request.form.get("password"):
+            flash('Fill out the registration form properly!')
+            return render_template('register.html')
+
+        elif not re.match(username_regex, username):
+            flash('Username must contain only characters and numbers!')
+            return render_template('register.html')
+
+        elif len(username) <= 2:
+            flash('Username must be at least 2 characters long!')
+            return render_template('register.html')
+
+        elif len(original_password) <= 6:
+            flash('Password must be at least 6 characters long!')
+            return render_template('register.html')
+
+        else:
+            # Handle registration, adding to DB
+            encrypted_password = util.hash_password(original_password)
+            register_date = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            data_manager.add_user(username, encrypted_password, register_date)
+            flash('Successful registration. Log in to continue.')
+            return redirect(url_for('login'))
+
+    elif request.method == 'POST':
+        # Form is empty
+        flash('Please fill out the form!')
+        return render_template('register.html')
+
+    else:
+        return render_template('register.html')
+
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    # Check if "username" and "password" POST requests exist (user submitted form)
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+        username = request.form['username']
+        password = request.form['password']
+        account = data_manager.get_user_by_username(username)
+        print(account)
+
+        if account:
+            session['id'] = account[0]['id']
+            session['username'] = account[0]['username']
+            encrypted_password = account[0]['password']
+            session.permanent = True
+            print(f'session is: {session}')
+
+            # If account exists in users table in the database
+            if util.verify_password(password, encrypted_password):
+                print("Passwords match")
+                # Create session data, we can access this data in other routes
+                # Redirect to home page
+                return redirect(url_for('index'))
+            elif 'user' in session:
+                return redirect(url_for('index'))
+
+            else:
+                # Account doesnt exist or username/password incorrect
+                flash('Wrong username or password')
+                return redirect(url_for('login'))
+        else:
+            # Account doesnt exist or username/password incorrect
+            flash('Wrong username or password')
+            return redirect(url_for('login'))
+
+    return render_template('login.html')
+
+
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    user = session['username']
+    flash(f'Goodbye {user}')
+    session.pop("username", None)
+    return redirect(url_for('index'))
 
 
 def main():
