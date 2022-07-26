@@ -17,10 +17,12 @@ load_dotenv()
 
 @app.route("/")
 def index():
-    """
-    This is a one-pager which shows all the boards and cards
-    """
-    return render_template('index.html')
+    if request.method == 'GET':
+        print(session)
+        """
+        This is a one-pager which shows all the boards and cards
+        """
+        return render_template('index.html')
 
 
 @app.route("/api/boards")
@@ -66,7 +68,7 @@ def register():
             flash('Username must be at least 2 characters long!')
             return render_template('register.html')
 
-        elif len(original_password) <= 6:
+        elif len(original_password) < 5:
             flash('Password must be at least 6 characters long!')
             return render_template('register.html')
 
@@ -97,7 +99,7 @@ def login():
         print(account)
 
         if account:
-            session['id'] = account[0]['id']
+            #session['id'] = account[0]['id']
             session['username'] = account[0]['username']
             encrypted_password = account[0]['password']
             session.permanent = True
@@ -121,6 +123,10 @@ def login():
             flash('Wrong username or password')
             return redirect(url_for('login'))
 
+    elif request.method == 'GET' and len(session) != 0:
+        flash(f'{session["username"]} are already logged in!')
+        return redirect(url_for('index'))
+
     return render_template('login.html')
 
 
@@ -129,6 +135,7 @@ def logout():
     user = session['username']
     flash(f'Goodbye {user}')
     session.pop("username", None)
+    session.clear()
     return redirect(url_for('index'))
 
 

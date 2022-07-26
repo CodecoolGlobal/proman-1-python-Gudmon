@@ -26,7 +26,12 @@
       </div>
     {% endfor %}
   {% endif %}
-
+        <a href="{{url_for('register')}}">Register</a><br>
+        <a href="{{url_for('login')}}">Login</a><br>
 {% endwith %}
+     {% if session.username %}
+         Welcome {{ session.username }}
+         <a href="{{url_for('logout')}}">Logout</a><br>
+    {% endif %}
     </body>
 </html>
