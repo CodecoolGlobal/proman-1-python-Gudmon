@@ -21,9 +21,15 @@ export let boardsManager = {
 
 function showHideButtonHandler(clickEvent) {
     const boardId = clickEvent.target.dataset.boardId;
-    console.log(clickEvent.currentTarget)
+    console.log(clickEvent.currentTarget);
     if (this.innerHTML === "Hide Cards"){
-
-    };
-    cardsManager.loadCards(boardId);
+        let selected = document.querySelectorAll(`div[data-board-id="${boardId}"]`);
+        console.log(selected)
+        selected[0].innerHTML = " ";
+        this.innerHTML = "Show Cards";
+    }
+    else{
+        this.innerHTML = "Hide Cards";
+        cardsManager.loadCards(boardId);
+    }
 }
