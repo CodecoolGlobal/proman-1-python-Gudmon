@@ -1,6 +1,11 @@
+#root{
+
+}
+
 .board-container{
-    width: 90%;
-    background-color: #cdcdcd;
+    width: 1000px;
+    height: 80vh;
+    display: flex;
 }
 
 .board-container:nth-child(even){

@@ -21,11 +21,10 @@ export let boardsManager = {
 
 function showHideButtonHandler(clickEvent) {
     const boardId = clickEvent.target.dataset.boardId;
-    console.log(clickEvent.currentTarget);
     if (this.innerHTML === "Hide Cards"){
-        let selected = document.querySelectorAll(`div[data-board-id="${boardId}"]`);
-        console.log(selected)
-        selected[0].innerHTML = " ";
+        let selected = document.querySelectorAll(`.board-column-content[data-board-id="${boardId}"]`);
+        console.log(selected);
+        selected.forEach(element => element.style.display= "none");
         this.innerHTML = "Show Cards";
     }
     else{
