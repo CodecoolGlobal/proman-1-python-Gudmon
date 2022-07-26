@@ -1,3 +1,8 @@
-#boards {
-    background-color: green;
+.board-container{
+    width: 90%;
+    background-color: #cdcdcd;
+}
+
+.board-container:nth-child(even){
+    background-color: #eeeeee;
 }
