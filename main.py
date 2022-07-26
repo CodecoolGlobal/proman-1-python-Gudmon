@@ -18,7 +18,7 @@ load_dotenv()
 @app.route("/")
 def index():
     if request.method == 'GET':
-        print(session)
+
         """
         This is a one-pager which shows all the boards and cards
         """
@@ -41,7 +41,19 @@ def get_cards_for_board(board_id: int):
     All cards that belongs to a board
     :param board_id: id of the parent board
     """
+
     return queries.get_cards_for_board(board_id)
+
+
+@app.route("/api/boards/${statusId}/cards/")
+@json_response
+def get_cards_status_for_board(statusId: int):
+    """
+    All cards that belongs to a board
+    :param board_id: id of the parent board
+    """
+
+    return queries.get_cards_for_board(statusId)
 
 
 @app.route('/register', methods=['GET', 'POST'])
