@@ -113,11 +113,11 @@ def login():
         print(account)
 
         if account:
-            #session['id'] = account[0]['id']
+            session['id'] = account[0]['id']
             session['username'] = account[0]['username']
             encrypted_password = account[0]['password']
             session.permanent = True
-            print(f'session is: {session}')
+            print(session)
 
             # If account exists in users table in the database
             if util.verify_password(password, encrypted_password):
@@ -137,10 +137,6 @@ def login():
             flash('Wrong username or password')
             return redirect(url_for('login'))
 
-    elif request.method == 'GET' and len(session) != 0:
-        # flash(f'{session["username"]} are already logged in!')
-        return redirect(url_for('index'))
-
     return render_template('login.html')
 
 
@@ -149,7 +145,7 @@ def logout():
     user = session['username']
     flash(f'Goodbye {user}')
     session.pop("username", None)
-    session.clear()
+    print(session)
     return redirect(url_for('index'))
 
 
