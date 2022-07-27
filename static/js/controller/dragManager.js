@@ -1,46 +1,36 @@
-let cards = document.querySelectorAll(".card");
-let all_status = document.querySelectorAll(".status");
-let draggableTodo = null;
 
-cards.forEach(cards=>{
-    cards.addEventListener('dragstart', dragStart);
-    cards.addEventListener('dragend', dragEnd);
-});
 
-function dragStart(){
-    draggableTodo = this;
-    console.log("dragStart");
-}
 
-function dragEnd(){
-    draggableTodo = null;
-    console.log("dragend");
-}
 
-all_status.forEach(status=>{
-    status.addEventListener('dragover', dragOver);
-    status.addEventListener('dragenter', dragEnter);
-    status.addEventListener('dragleave', dragLeave);
-    status.addEventListener('drop', dragDrop);
-})
+let dragManager = {
+    dragStart: function () {
+        let draggable = this;
+        console.log("dragStart");
+    },
 
-function dragOver(e){
-    e.preventDefault();
-    console.log('dragOver');
-}
+    dragEnd: function () {
+        draggable = null;
+        console.log("dragend");
+    },
 
-function dragEnter(){
-    this.style.border = '1px dashed #ccc'
-    console.log("dragenter");
-}
+    dragOver: function (e) {
+        e.preventDefault();
+        console.log('dragOver');
+    },
 
-function dragLeave(){
-    this.style.border = 'none';
-    console.log("dragleave");
-}
+    dragEnter: function () {
+        this.style.border = '1px dashed #ccc'
+        console.log("dragenter");
+    },
 
-function dragDrop(){
-    this.style.border = 'none';
-    this.appendChild(draggableTodo);
-    console.log("drop");
+    dragLeave: function () {
+        this.style.border = 'none';
+        console.log("dragleave");
+    },
+
+    dragDrop: function () {
+        this.style.border = 'none';
+        this.appendChild(draggableTodo);
+        console.log("drop");
+    }
 }

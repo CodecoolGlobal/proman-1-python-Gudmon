@@ -14,8 +14,10 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
 
         <script type="module" src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+        <script type="module" src="{{ url_for('static', filename='js/mainController.js') }}" defer></script>
     </head>
     <body>
+        <button type="button" id="board-create-btn">Create New Board</button>
         <div id="root"></div>
     {% with messages = get_flashed_messages(with_categories=true) %}
   <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->

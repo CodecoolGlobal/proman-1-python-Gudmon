@@ -4,15 +4,12 @@ export const htmlTemplates = {
 }
 
 export const builderFunctions = {
-
     [htmlTemplates.board]: boardBuilder,
     [htmlTemplates.card]: cardBuilder
 };
 
 export function htmlFactory(template) {
-
     if (builderFunctions.hasOwnProperty(template)) {
-
         return builderFunctions[template];
     }
 
@@ -68,17 +65,13 @@ function boardBuilder(board) {
 }
 
 function cardBuilder(card) {
+    return `<div class="card" data-card-id="${card.id}" draggable="true">
+                <button class="card-remove" data-card-id="${card.id}"><i class="fas fa-trash-alt"></i>Remove</button>
+                <div class="card-title">${card.title}</div>
+            </div>`;
+}
 
-    return `
-    
-    
-    <div class="card" data-card-id="${card.id}">
-        <div class="card-remove"><i class="fas fa-trash-alt"></i></div>
-        <div class="card-title">${card.title}</div>
-        <div class="card-status">status id: ${card.status_id}</div>
-    </div>
-    `;
-
+function buttonBuilder(button) {
 
 }
 
