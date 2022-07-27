@@ -23,25 +23,21 @@ export let boardsManager = {
 
 function showHideButtonHandler(clickEvent) {
     const boardId = clickEvent.target.dataset.boardId;
-    console.log(this)
     let selectedBoard = document.querySelectorAll(`.board-columns[data-board-id="${boardId}"`)
     if (selectedBoard[0].classList.value === 'board-columns camo') {
         selectedBoard[0].classList.value = "board-columns"
-        console.log(selectedBoard[0].classList.value)
-        this.innerText = "Hide Cards"
+        selectedBoard[0].style.animation = "boardOpen 0.3s ease-out"
+        this.innerText = "^^^"
     }
-
-
-        // if (this.innerText === "Hide Cards"){
-        //     this.innerText = "Show Cards";
-        // }
-        // else {
-        //     this.innerText = "Hide Cards";
-        // }
     else{
         selectedBoard[0].classList.value = selectedBoard[0].classList.value + " camo"
-        this.innerText = "Show Cards"
+        this.innerText = "vvv"
     }
+}
+
+
+function sleep(ms){
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 

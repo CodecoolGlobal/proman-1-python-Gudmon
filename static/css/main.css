@@ -38,7 +38,9 @@ button{
     min-height: 300px;
 }
 
-
+.board-add{
+    float: right;
+}
 
 section.board{
     margin: 20px;
@@ -51,7 +53,9 @@ section.board{
     height: 50px;
     background: #fff;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
+
 }
+
 
 .board-title{
     margin: 13px;
@@ -70,6 +74,8 @@ section.board{
 .board-columns{
     display: flex;
     flex-wrap: nowrap;
+    position: relative;
+    left: 40px;
 }
 
 .board-columns.camo{
@@ -95,6 +101,10 @@ section.board{
 
 .board-column-title{
     text-align: center;
+    background-color: #cdcdcd;
+    border-radius: 3px;
+    font-size: large;
+    font-weight: bold;
 }
 
 .card{
@@ -133,4 +143,19 @@ section.board{
 
 .card-title{
     padding-right: 16px;
+}
+
+
+/* animations */
+@keyframes boardOpen {
+  0% {
+      left: 0;
+      top: -20px;
+      opacity: 0.6;
+  }
+  100% {
+      left: 20px;
+        top: 0px;
+      opacity: 100%;
+  }
 }
