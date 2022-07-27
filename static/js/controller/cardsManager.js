@@ -2,6 +2,7 @@ import {dataHandler} from "../data/dataHandler.js";
 import {htmlFactory, htmlTemplates} from "../view/htmlFactory.js";
 import {domManager} from "../view/domManager.js";
 
+
 export let cardsManager = {
     loadCards: async function (boardId) {
         const cards = await dataHandler.getCardsByBoardId(boardId);
@@ -20,7 +21,6 @@ export let cardsManager = {
 
 
 function deleteButtonHandler(clickEvent) {
-
     let cardId = clickEvent.target.dataset.cardId;
     let toDelete = document.querySelectorAll(`.card[data-card-id="${cardId}"]`);
     toDelete[0].outerHTML = " ";
