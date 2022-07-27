@@ -65,15 +65,13 @@ section.board{
 }
 
 .board-columns{
-    justify-content: space-between;
-    display: inline-block;
+    display: flex;
     flex-wrap: nowrap;
 }
 
 .board-column{
-    justify-content: space-between;
     padding: 10px;
-    display: inline-block;
+    flex: 1;
 }
 
 .board-column-content{
@@ -129,51 +127,3 @@ section.board{
 .card-title{
     padding-right: 16px;
 }
-
-
-
-
-
-/* #root{
-    justify-content: center;
-}
-.board-header{
-    background-color: #222222;
-    position: absolute;
-    height: 40px;
-    font-weight: 32;
-    width: 100%;
-}
-
-.board-container{
-    width: 1000px;
-    height: 80vh;
-    border: 2px solid;
-    flex-wrap: nowrap;
-    flex-flow: wrap;
-    justify-content: space-evenly;
-}
-
-.board-column{
-    max-width: 25%;
-    min-width: 10%;
-    width: 18%;
-    background-color: lightgrey;
-    position: relative;
-    display: inline-flex;
-}
-
-.card{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    box-shadow:rgba(15,15,15,0.1) 0px 0px 0px 1px,
-    rgba(15,15,15,0.1) 0px 2px 4px;
-    border-radius: 20px;
-    font-size: 1.5rem;
-    position: relative;
-    margin: 0.5rem 0;
-}
-
- */

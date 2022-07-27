@@ -20,7 +20,7 @@ SET default_with_oids = false;
 DROP TABLE IF EXISTS statuses CASCADE;
 DROP TABLE IF EXISTS boards CASCADE;
 DROP TABLE IF EXISTS cards;
-
+DROP TABLE IF EXISTS promanusers;
 ---
 --- create tables
 ---
@@ -43,6 +43,14 @@ CREATE TABLE cards (
     card_order  INTEGER             NOT NULL
 );
 
+
+CREATE TABLE promanusers (
+    id serial NOT NULL,
+    username varchar NOT NULL,
+    password varchar NOT NULL,
+    registration_date timestamp without time zone
+);
+
 ---
 --- insert data
 ---
@@ -54,6 +62,9 @@ INSERT INTO statuses(title) VALUES ('done');
 
 INSERT INTO boards(title) VALUES ('Board 1');
 INSERT INTO boards(title) VALUES ('Board 2');
+
+INSERT INTO promanusers (username, password, registration_date)
+    VALUES ('teszt', 'asdasd', '2022-07-25');
 
 INSERT INTO cards VALUES (nextval('cards_id_seq'), 1, 1, 'new card 1', 1);
 INSERT INTO cards VALUES (nextval('cards_id_seq'), 1, 1, 'new card 2', 2);

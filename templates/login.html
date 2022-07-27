@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+</head>
+<body>
+    <div class="login-container">
+<form action="{{url_for('login')}}" method="POST">
+    <label>Username</label>
+    <input type="text" name="username" required="" autocomplete="off">
+
+    <label>Password</label>
+    <input type="password" name="password" required="" autocomplete="off">
+
+    <button type="submit">Submit</button>
+</form>
+    <h4><a href="{{url_for('register')}}">Don't have an account? Register!</a></h4>
+</div>
+ {% with messages = get_flashed_messages(with_categories=true) %}
+  <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <!-- <strong>Title</strong> --> {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+{% endwith %}
+</body>
+</html>
