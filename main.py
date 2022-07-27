@@ -79,7 +79,7 @@ def register():
             return render_template('register.html')
 
         elif len(username) <= 2:
-            flash('Username must be at least 2 characters long!')
+            flash('Username must be at least 3 characters long!')
             return render_template('register.html')
 
         elif len(original_password) < 5:
@@ -113,11 +113,11 @@ def login():
         print(account)
 
         if account:
-            #session['id'] = account[0]['id']
+            session['id'] = account[0]['id']
             session['username'] = account[0]['username']
             encrypted_password = account[0]['password']
             session.permanent = True
-            print(f'session is: {session}')
+            print(session)
 
             # If account exists in users table in the database
             if util.verify_password(password, encrypted_password):
@@ -138,7 +138,7 @@ def login():
             return redirect(url_for('login'))
 
     elif request.method == 'GET' and len(session) != 0:
-        # flash(f'{session["username"]} are already logged in!')
+        flash(f'{session["username"]} are already logged in!')
         return redirect(url_for('index'))
 
     return render_template('login.html')
