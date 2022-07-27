@@ -145,7 +145,7 @@ def logout():
     user = session['username']
     flash(f'Goodbye {user}')
     session.pop("username", None)
-    session.clear()
+    print(session)
     return redirect(url_for('index'))
 
 
