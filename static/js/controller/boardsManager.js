@@ -10,6 +10,7 @@ export let boardsManager = {
         for (let board of boards) {
             const boardBuilder = htmlFactory(htmlTemplates.board);
             const content = boardBuilder(board);
+            cardsManager.loadCards(board.id);
             domManager.addChild("#root", content);
             domManager.addEventListener(
                 `.toggle-board-button[data-board-id="${board.id}"]`,
@@ -22,24 +23,27 @@ export let boardsManager = {
 
 function showHideButtonHandler(clickEvent) {
     const boardId = clickEvent.target.dataset.boardId;
-    if (this.innerHTML === "Hide Cards"){
-        this.innerHTML = "Show Cards";
-        let selected = document.querySelectorAll(`.board-column-content[data-board-id="${boardId}"]`);
-        selected.forEach(swapDisplay);
+    try{
+        const selected = document.querySelectorAll(`.board-column[data-board-id="${boardId}"]`);
+        selected.forEach(swapDisplay)
+        if (this.innerText === "Hide Cards"){
+            this.innerText = "Show Cards";
+        }
+        else {
+            this.innerText = "Hide Cards";
+        }
     }
-    else if (this.innerHTML === "Show Cards"){
-        this.innerHTML = "Hide Cards";
-        let selected = document.querySelectorAll(`.board-column-content[data-board-id="${boardId}"]`);
-        selected.forEach(swapDisplay);
+    catch (e) {
+        console.log(e)
     }
-    else cardsManager.loadCards(boardId);
-        this.innerHTML = "Hide Cards";
 }
 
 function swapDisplay(e){
     if (e.style.display === 'none'){
         e.style.display = 'block';
     }
-    else e.style.display = 'none';
+    else{
+        e.style.display = 'none';
+    }
 }
 
