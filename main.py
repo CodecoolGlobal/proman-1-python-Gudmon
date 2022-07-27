@@ -8,10 +8,12 @@ import datetime
 import re
 import util
 import data_manager
+import secrets
 
 mimetypes.add_type('application/javascript', '.js')
 app = Flask(__name__)
-app.secret_key = os.environ.get("SECRET_KEY")
+SECRET_KEY = secrets.token_urlsafe(16)
+app.secret_key = SECRET_KEY
 app.permanent_session_lifetime = datetime.timedelta(minutes=1)
 load_dotenv()
 
@@ -136,7 +138,7 @@ def login():
             return redirect(url_for('login'))
 
     elif request.method == 'GET' and len(session) != 0:
-        flash(f'{session["username"]} are already logged in!')
+        # flash(f'{session["username"]} are already logged in!')
         return redirect(url_for('index'))
 
     return render_template('login.html')
