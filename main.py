@@ -137,10 +137,6 @@ def login():
             flash('Wrong username or password')
             return redirect(url_for('login'))
 
-    elif request.method == 'GET' and len(session) != 0:
-        flash(f'{session["username"]} are already logged in!')
-        return redirect(url_for('index'))
-
     return render_template('login.html')
 
 
