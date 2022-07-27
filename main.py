@@ -8,10 +8,12 @@ import datetime
 import re
 import util
 import data_manager
+import secrets
 
 mimetypes.add_type('application/javascript', '.js')
 app = Flask(__name__)
-app.secret_key = os.environ.get("SECRET_KEY")
+SECRET_KEY = secrets.token_urlsafe(16)
+app.secret_key = SECRET_KEY
 app.permanent_session_lifetime = datetime.timedelta(minutes=1)
 load_dotenv()
 
@@ -143,7 +145,7 @@ def logout():
     user = session['username']
     flash(f'Goodbye {user}')
     session.pop("username", None)
-    print(session)
+    session.clear()
     return redirect(url_for('index'))
 
 
