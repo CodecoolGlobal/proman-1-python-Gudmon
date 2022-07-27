@@ -7,10 +7,7 @@ import {boardsManager} from "./controller/boardsManager.js";
 
 
 function onStart(){
-    let boardCreator = document.querySelectorAll("#board-create-btn");
-    console.log(boardCreator);
-    domManager.addEventListener(boardCreator, 'click', boardsManager.loadBoards())
+    boardsManager.loadBoards()
     }
 
 
-onStart();

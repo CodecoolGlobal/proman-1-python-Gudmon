@@ -27,13 +27,11 @@ function boardBuilder(board) {
                 <section class="board" data-board-id="${board.id}">
                     <div class="board-header"><span class="board-title">${board.title}</span>
                             <button class="board-add">Add Card</button>
-                            <button class="toggle-board-button" data-board-id="${board.id}"><i class="fas fa-chevron-down"></i> Hide Cards</button>
-                    </div>
-                    <div class="board-columns">
+                            <button class="toggle-board-button" data-board-id="${board.id}"> Hide Cards</button>
+                    <div class="board-columns" data-board-id="${board.id}">
                         <div class="board-column">
                             <div class="board-column-title">New</div>
                                 <div class="board-column-content" data-card-title="1">
-                                    
                                 </div>
                         </div>  
                           
@@ -48,7 +46,7 @@ function boardBuilder(board) {
                         <div class="board-column">
                             <div class="board-column-title">Testing</div>
                                 <div class="board-column-content" data-card-title="3">
-                                   
+                                </div>   
                         </div>    
                         
                         <div class="board-column">
@@ -57,7 +55,7 @@ function boardBuilder(board) {
                                     
                                 </div>
                         </div>
-                    
+                    </div>
                         
                     </div>       
                 </section>    
