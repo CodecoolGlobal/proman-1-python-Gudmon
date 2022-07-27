@@ -13,4 +13,16 @@ function onStart(){
     }
 
 
-onStart();
+function queryTest() {
+    let query = dataHandler.getBoards()
+    query.then(data => {
+        for (let current in data) {
+            console.log(current);
+        }
+
+    })
+
+}
+
+
+
