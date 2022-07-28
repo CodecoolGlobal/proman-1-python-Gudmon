@@ -17,6 +17,7 @@ app.secret_key = SECRET_KEY
 app.permanent_session_lifetime = datetime.timedelta(minutes=1)
 load_dotenv()
 
+
 @app.route("/")
 def index():
     if request.method == 'GET':
@@ -47,10 +48,12 @@ def get_cards_for_board(board_id: int):
         return queries.get_cards_for_board(board_id)
 
     elif request.method == "POST":
-        return request.json
-        # board = request.json["board_id"]
-        # status = request.json["status_id"]
-        # title = request.json["title"]
+        board = request.json["board_id"]
+        status = request.json["status_id"]
+        title = request.json["title"]
+
+        return queries.add_new_card(board, status, title)
+
 
 @app.route("/api/boards/${statusId}/cards/")
 @json_response
