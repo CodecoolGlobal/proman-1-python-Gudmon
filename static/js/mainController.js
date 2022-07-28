@@ -9,6 +9,3 @@ import {boardsManager} from "./controller/boardsManager.js";
 function onStart(){
     boardsManager.loadBoards()
     }
-
-
-onStart();
