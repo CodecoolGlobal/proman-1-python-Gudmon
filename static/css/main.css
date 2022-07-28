@@ -85,6 +85,7 @@ section.board{
 .board-column{
     padding: 10px;
     flex: 1;
+    background-color: lightgrey;
 }
 
 .board-column-content{
@@ -162,4 +163,18 @@ section.board{
         top: 0px;
       opacity: 100%;
   }
+}
+
+@keyframes wiggle{
+    0% {transform: rotate(3deg)}
+    40% {transform: rotate(-2deg)}
+    80% {transform: rotate(2deg)}
+    100% {transform: rotate(-3deg)}
+}
+
+@keyframes heartBeat{
+        0% {transform: scale(0.8)}
+    40% {transform: scale(1.1)}
+    80% {transform: scale(0.9)}
+    100% {transform: scale(1)}
 }
