@@ -32,3 +32,16 @@ def get_cards_for_board(board_id):
         , {"board_id": board_id})
 
     return matching_cards
+
+
+def add_new_card(board_id, status_id, title):
+    data_manager.execute_insert(
+        """
+        INSERT INTO cards (board_id, status_id, title, card_order)
+        VALUES (%(board_id)s, %(status_id)s, %(title)s, 1)
+        """, variables={
+            'board_id': board_id,
+            'status_id': status_id,
+            'title': title
+        }
+    )
