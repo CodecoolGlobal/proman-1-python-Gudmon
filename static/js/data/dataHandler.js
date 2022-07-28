@@ -22,11 +22,13 @@ export let dataHandler = {
     createNewBoard: async function (boardTitle) {
         // creates new board, saves it and calls the callback function with its data
     },
-    createNewCard: async function (cardTitle, boardId, statusId) {
+    createNewCard: async function (cardTitle, cardText, boardId, statusId, cardOrder) {
         const payload = {
             "board_id": boardId,
             "status_id": statusId,
-            "title": cardTitle
+            "title": cardTitle,
+            "text": cardText,
+            "card_order": cardOrder
         };
         return await apiPut(`/api/boards/${boardId}/cards/`, payload);
     },
