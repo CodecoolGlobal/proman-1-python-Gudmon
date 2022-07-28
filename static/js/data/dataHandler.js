@@ -32,7 +32,9 @@ async function apiGet(url) {
         method: "GET",
     });
     if (response.ok) {
-        return await response.json();
+        return await response.json()
+    } else {
+        return console.log("Something went wrong")
     }
 }
 
