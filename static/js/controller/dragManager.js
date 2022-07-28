@@ -7,7 +7,6 @@ let dragManager = {
     dragStart: function () {
         draggableStuff = this;
         let dropTarget = document.querySelectorAll(".board-column-content")
-        console.log(dropTarget)
         dropTarget.forEach(e => {
             e.style.backgroundColor = "green"
             e.style.opacity = "0.4"
@@ -40,12 +39,19 @@ let dragManager = {
 
     dragLeave: function () {
         this.style.border = "none"
-        console.log("dragleave");
     },
 
     dragDrop: function () {
+        console.log(this.parentNode.parentElement.dataset.boardId)
+        console.log(draggableStuff.parentNode.parentElement.parentElement.dataset.boardId)
+        if (this.parentNode.parentElement.dataset.boardId === draggableStuff.parentNode.parentElement.parentElement.dataset.boardId){
+            this.appendChild(draggableStuff);
+            this.style.border = 'none';
+        }
+        else{
+
+        }
         this.style.border = 'none';
-        this.appendChild(draggableStuff);
     },
 
 

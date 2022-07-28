@@ -39,7 +39,7 @@ function boardBuilder(board) {
                                       input req: board_id, status, title, text, card_order-->
                                       <div class="modal-content">
                                         <span class="close" data-card-close="${board.id}">&times;</span>
-                                        <p>Some text in the Modal of board_id: ${board.id}</p>
+                                        <p>Add a new Card</p>
                                         <form id="addCard${board.id}" action="/api/boards/${board.id}/cards/"  method="POST">
                                         <input type="hidden" id="board_id" name="board_id" value="${board.id}"><br>
 
@@ -53,11 +53,11 @@ function boardBuilder(board) {
                                                  <label for="testing">Testing</label><br>
                                                  
                                                  <input type="radio" id="done" name="card_status" value="Done" required="">
-                                                 <label for="done">Done</label><br>
+                                                 <label for="done">Done</label><br><br>
               
-                                        <label for="title${board.id}">Title</label>
+                                        <label for="title${board.id}">Title: </label>
                                         <input type="text" id="title${board.id}" name="title" required=""><br>
-                                        <label for="text">Text</label>
+                                        <label for="text">Text: </label>
                                         <input type="text" id="text" name="text" required=""><br>
                                         <input type="hidden" id="card_oder" name="card_order" value="1"><br>
                                         <button type="submit" class="submitBtn${board.id}">Submit</button>
