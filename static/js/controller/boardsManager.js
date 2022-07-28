@@ -17,9 +17,7 @@ export let boardsManager = {
                 "click",
                 showHideButtonHandler
             )
-            cardsManager.loadCards(`${board.id}`).then(
-                dragManager.initDrag
-            )
+
 
             domManager.addEventListener(
                 `.board[data-board-id="${board.id}"] .card-add[data-new-card="${board.id}"]`,
@@ -27,7 +25,9 @@ export let boardsManager = {
                 ToggleModal
             )
 
-            cardsManager.loadCards(`${board.id}`);
+            cardsManager.loadCards(`${board.id}`).then(
+                dragManager.initDrag
+            )
         }
     },
 };

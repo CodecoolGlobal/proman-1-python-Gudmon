@@ -105,7 +105,7 @@ function cardBuilder(card) {
     return `<div class="card" data-card-id="${card.id}" draggable="true">
                 <button class="card-remove" data-card-id="${card.id}"><i class="fas fa-trash-alt"></i>Remove</button>
                 <div class="card-title">${card.title}</div>
-                <div class="card-text">${card.text}</div>
+                <div class="card-text">${card.text_data}</div>
             </div>`;
 }
 
