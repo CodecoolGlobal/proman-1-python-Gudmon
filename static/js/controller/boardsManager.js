@@ -55,14 +55,17 @@ function sleep(ms){
 function addCard(clickEvent) {
 // Original JavaScript code by Chirp Internet: chirpinternet.eu
 // Please acknowledge use of this code by including this header.
-    let indexId = clickEvent.target.id;
-    console.log(indexId)
-    let modal = document.getElementById(`${indexId}myModal`);
+    let parentBoard = (clickEvent.target.parentElement.parentElement)
+    console.log(parentBoard)
+    let parentBoardId = parentBoard.dataset.boardId
+    console.log(parentBoardId)
+
+    let modal = document.querySelector(`.modal[data-new-modal="${parentBoardId}"]`);
     console.log(modal)
 
-    // Get the button that opens the modal
-    let btn = document.getElementById(`${indexId}`);
-    console.log(btn.children)
+    // Get the button that opens the modal`.toggle-board-button[data-board-id="${board.id}"]`
+    let btn = document.querySelector(`.card-add[data-new-card="${parentBoardId}"]`);
+    console.log(btn)
     //console.log(clickEvent.target.dataset.newCard)
 
     // Get the <span> element that closes the modal

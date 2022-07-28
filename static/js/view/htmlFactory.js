@@ -29,7 +29,7 @@ function boardBuilder(board) {
                     <div class="board-header"><span class="board-title">${board.title}</span>
                             <button class="toggle-board-button" data-board-id="${board.id}">Hide Cards</button>
                             <button class="card-add" id="myBtn${board.id}" data-new-card="${board.id}">+ New Card</button>
-                                <div id="myBtn${board.id}myModal" class="modal">
+                                <div id="myModal" data-new-modal="${board.id}" class="modal">
 
                                       <!-- Modal content -->
                                       <div class="modal-content">
