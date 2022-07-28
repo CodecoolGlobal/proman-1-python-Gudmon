@@ -33,7 +33,7 @@ function boardBuilder(board) {
 
                                       <!-- Modal content -->
                                       <div class="modal-content">
-                                        <span class="close">&times;</span>
+                                        <span class="close" data-card-close="${board.id}">&times;</span>
                                         <p>Some text in the Modal of board_id: ${board.id}</p>
                                       </div>
                                     

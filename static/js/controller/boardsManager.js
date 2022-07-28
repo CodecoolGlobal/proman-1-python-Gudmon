@@ -56,20 +56,13 @@ function addCard(clickEvent) {
 // Original JavaScript code by Chirp Internet: chirpinternet.eu
 // Please acknowledge use of this code by including this header.
     let parentBoard = (clickEvent.target.parentElement.parentElement)
-    console.log(parentBoard)
     let parentBoardId = parentBoard.dataset.boardId
-    console.log(parentBoardId)
-
     let modal = document.querySelector(`.modal[data-new-modal="${parentBoardId}"]`);
-    console.log(modal)
-
-    // Get the button that opens the modal`.toggle-board-button[data-board-id="${board.id}"]`
     let btn = document.querySelector(`.card-add[data-new-card="${parentBoardId}"]`);
-    console.log(btn)
-    //console.log(clickEvent.target.dataset.newCard)
+
 
     // Get the <span> element that closes the modal
-    let span = document.getElementsByClassName("close")[0];
+    let span = document.querySelector(`.close[data-card-close="${parentBoardId}"]`);
 
 
     // When the user clicks on the button, open the modal
