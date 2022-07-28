@@ -36,9 +36,29 @@ def get_boards():
     return queries.get_boards()
 
 
-@app.route("/api/boards/<int:board_id>/cards/")
+@app.route("/api/boards/<int:board_id>/cards/", methods=['GET', 'POST'])
 @json_response
 def get_cards_for_board(board_id: int):
+    if request.method == "POST":
+        print(f'board id : {board_id}')
+        status = request.form.get('card_status')
+        status_id = None
+        if status == "New":
+            status_id = 1
+        if status == "In Progress":
+            status_id = 2
+        if status == "Testing":
+            status_id = 3
+        if status == "Done":
+            status_id = 4
+        print(f'status id : {status_id}')
+        title = request.form.get('title')
+        print(f'title : {title}')
+        text = request.form.get('text')
+        print(f'text : {text}')
+        card_order = request.form.get('card_order')
+        print(f'card_order : {card_order}')
+        return render_template('index.html')
     """
     All cards that belongs to a board
     :param board_id: id of the parent board

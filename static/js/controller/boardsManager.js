@@ -59,6 +59,7 @@ function addCard(clickEvent) {
     let parentBoardId = parentBoard.dataset.boardId
     let modal = document.querySelector(`.modal[data-new-modal="${parentBoardId}"]`);
     let btn = document.querySelector(`.card-add[data-new-card="${parentBoardId}"]`);
+    modal.style.display = "block";
 
 
     // Get the <span> element that closes the modal

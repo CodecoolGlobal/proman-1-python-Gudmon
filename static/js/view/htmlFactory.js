@@ -31,10 +31,34 @@ function boardBuilder(board) {
                             <button class="card-add" id="myBtn${board.id}" data-new-card="${board.id}">+ New Card</button>
                                 <div id="myModal" data-new-modal="${board.id}" class="modal">
 
-                                      <!-- Modal content -->
+                                      <!-- Modal content 
+                                      input req: board_id, status, title, text, card_order-->
                                       <div class="modal-content">
                                         <span class="close" data-card-close="${board.id}">&times;</span>
                                         <p>Some text in the Modal of board_id: ${board.id}</p>
+                                        <form action="/api/boards/${board.id}/cards/" method="POST">
+                                        <input type="hidden" id="board_id" name="board_id" value="${board.id}"><br>
+
+                                                <input type="radio" id=new" name="card_status" value="New" required="">
+                                                <label for="new">New</label><br>
+
+                                                 <input type="radio" id="in_progress" name="card_status" value="In Progress" required="">
+                                                 <label for="in_progress">In Progress</label><br>
+                                                 
+                                                 <input type="radio" id="testing" name="card_status" value="Testing" required="">
+                                                 <label for="testing">Testing</label><br>
+                                                 
+                                                 <input type="radio" id="done" name="card_status" value="Done" required="">
+                                                 <label for="done">Done</label><br>
+              
+                                        <label for="title">Title</label>
+                                        <input type="text" id="title" name="title" required=""><br>
+                                        <label for="text">Text</label>
+                                        <input type="text" id="text" name="text" required=""><br>
+                                        <input type="hidden" id="card_oder" name="card_order" value="1"><br>
+                                        <button type="submit">Submit</button>
+                                        </form>
+</form>
                                       </div>
                                     
                                     </div>
@@ -78,6 +102,7 @@ function cardBuilder(card) {
     return `<div class="card" data-card-id="${card.id}" draggable="true">
                 <button class="card-remove" data-card-id="${card.id}"><i class="fas fa-trash-alt"></i>Remove</button>
                 <div class="card-title">${card.title}</div>
+                <div class="card-text">${card.text}</div>
             </div>`;
 }
 
