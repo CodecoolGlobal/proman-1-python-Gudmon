@@ -145,6 +145,10 @@ section.board{
     padding-right: 16px;
 }
 
+.card.dragging {
+    opacity: 0.5;
+}
+
 
 /* animations */
 @keyframes boardOpen {
