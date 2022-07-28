@@ -28,7 +28,7 @@ export let dataHandler = {
             "status_id": statusId,
             "title": cardTitle
         };
-        return await apiPost(`/api/boards/${boardId}/cards/`, payload);
+        return await apiPut(`/api/boards/${boardId}/cards/`, payload);
     },
 };
 
@@ -61,7 +61,19 @@ async function apiPost(url, payload) {
 async function apiDelete(url) {
 }
 
-async function apiPut(url) {
+async function apiPut(url, payload) {
+    let message = await fetch(url, {
+        method: "PUT",
+        headers: {
+            "content-type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    });
+    if (message.ok) {
+        return await message.json();
+    } else {
+        return console.log("Something went wrong");
+    }
 }
 
 async function apiPatch(url) {
