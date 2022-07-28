@@ -37,3 +37,5 @@ export let cardsManager = {
 function deleteButtonHandler(clickEvent) {
     clickEvent.target.parentElement.remove();
 }
+
+

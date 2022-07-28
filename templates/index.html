@@ -16,7 +16,10 @@
         <script type="module" src="{{ url_for('static', filename='js/main.js') }}" defer></script>
     </head>
     <body>
+
         <div id="root"></div>
+        <button type="button" class="board-add">+ New Board</button>
+
     {% with messages = get_flashed_messages(with_categories=true) %}
   <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
   {% if messages %}
@@ -36,5 +39,6 @@
          Welcome {{ session.username }}
          <a href="{{url_for('logout')}}">Logout</a><br>
     {% endif %}
+
     </body>
 </html>
