@@ -1,3 +1,5 @@
+
+
 export const htmlTemplates = {
     board: 1,
     card: 2
@@ -36,7 +38,7 @@ function boardBuilder(board) {
                                       <div class="modal-content">
                                         <span class="close" data-card-close="${board.id}">&times;</span>
                                         <p>Some text in the Modal of board_id: ${board.id}</p>
-                                        <form action="/api/boards/${board.id}/cards/" method="POST">
+                                        <form id="addCard${board.id}" action="/api/boards/${board.id}/cards/"  method="POST">
                                         <input type="hidden" id="board_id" name="board_id" value="${board.id}"><br>
 
                                                 <input type="radio" id=new" name="card_status" value="New" required="">
@@ -51,12 +53,12 @@ function boardBuilder(board) {
                                                  <input type="radio" id="done" name="card_status" value="Done" required="">
                                                  <label for="done">Done</label><br>
               
-                                        <label for="title">Title</label>
-                                        <input type="text" id="title" name="title" required=""><br>
+                                        <label for="title${board.id}">Title</label>
+                                        <input type="text" id="title${board.id}" name="title" required=""><br>
                                         <label for="text">Text</label>
                                         <input type="text" id="text" name="text" required=""><br>
                                         <input type="hidden" id="card_oder" name="card_order" value="1"><br>
-                                        <button type="submit">Submit</button>
+                                        <button type="submit" class="submitBtn${board.id}">Submit</button>
                                         </form>
 </form>
                                       </div>
@@ -110,63 +112,4 @@ function buttonBuilder(button) {
 
 }
 
-
-function addCard () {
-
-    let feedBack = document.getElementById("#modal_feedback");
-    console.log(feedBack)
-
-    feedBack.addEventListener("submit", function(e) {
-      let form = this;
-      if(form.name.value == "") {
-        alert("Please enter your Name");
-        form.name.focus();
-        e.preventDefault();
-      } else if(form.email.value == "") {
-        alert("Please enter a valid Email address");
-        form.email.focus();
-        e.preventDefault();
-      } else if(form.message.value == "") {
-        alert("Please enter your comment or question in the Message box");
-        form.message.focus();
-        e.preventDefault();
-      }
-    }, false);
-
-    document.addEventListener("DOMContentLoaded", function() {
-      let modalWrapper = document.getElementById("#modal_wrapper");
-      let modalWindow  = document.getElementById("#modal_window");
-
-      let openModal = function(e)
-      {
-        modalWrapper.className = "overlay";
-        modalWindow.style.marginTop = (-modalWindow.offsetHeight)/2 + "px";
-        modalWindow.style.marginLeft = (-modalWindow.offsetWidth)/2 + "px";
-        e.preventDefault();
-      };
-
-      let closeModal = function(e)
-      {
-        modalWrapper.className = "";
-        e.preventDefault();
-      };
-
-      let clickHandler = function(e) {
-        if(e.target.tagName == "DIV") {
-          if(e.target.id != "modal_window") closeModal(e);
-        }
-      };
-
-      let keyHandler = function(e) {
-        if(e.keyCode == 27) closeModal(e);
-      };
-
-      document.getElementById("#modal_open").addEventListener("click", openModal, false);
-      document.getElementById("#modal_close").addEventListener("click", closeModal, false);
-      document.addEventListener("click", clickHandler, false);
-      document.addEventListener("keydown", keyHandler, false);
-    }, false);
-    }
-    // Original JavaScript code by Chirp Internet: chirpinternet.eu
-    // Please acknowledge use of this code by including this header.
 

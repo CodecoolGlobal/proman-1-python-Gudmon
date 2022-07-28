@@ -14,7 +14,6 @@ export let boardsManager = {
             const content = boardBuilder(board);
 
 
-
             domManager.addChild("#root", content);
             domManager.addEventListener(
                 `.toggle-board-button[data-board-id="${board.id}"]`,
@@ -24,7 +23,7 @@ export let boardsManager = {
             domManager.addEventListener(
                 `.board[data-board-id="${board.id}"] .card-add[data-new-card="${board.id}"]`,
                 "click",
-                addCard
+                ToggleModal
             )
 
             cardsManager.loadCards(`${board.id}`);
@@ -52,7 +51,7 @@ function sleep(ms){
 }
 
 
-function addCard(clickEvent) {
+function ToggleModal(clickEvent) {
 // Original JavaScript code by Chirp Internet: chirpinternet.eu
 // Please acknowledge use of this code by including this header.
     let parentBoard = (clickEvent.target.parentElement.parentElement)
@@ -60,6 +59,9 @@ function addCard(clickEvent) {
     let modal = document.querySelector(`.modal[data-new-modal="${parentBoardId}"]`);
     let btn = document.querySelector(`.card-add[data-new-card="${parentBoardId}"]`);
     modal.style.display = "block";
+    let submitButton = modal.querySelector(`.submitBtn${parentBoardId}`)
+
+
 
 
     // Get the <span> element that closes the modal
@@ -69,6 +71,7 @@ function addCard(clickEvent) {
     // When the user clicks on the button, open the modal
     btn.onclick = function() {
       modal.style.display = "block";
+
     }
 
     // When the user clicks on <span> (x), close the modal
@@ -83,7 +86,9 @@ function addCard(clickEvent) {
       }
 
 }
-
-
 }
+
+
+
+
 

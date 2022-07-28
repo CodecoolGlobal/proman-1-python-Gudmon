@@ -34,14 +34,17 @@ def get_cards_for_board(board_id):
     return matching_cards
 
 
-def add_new_card(board_id, status_id, title):
+def add_new_card(board_id, status_id, title, text, card_order):
     data_manager.execute_insert(
         """
-        INSERT INTO cards (board_id, status_id, title, card_order)
-        VALUES (%(board_id)s, %(status_id)s, %(title)s, 1)
+        INSERT INTO cards (board_id, status_id, title, text, card_order)
+        VALUES (%(board_id)s, %(status_id)s, %(title)s, %(text)s, %(card_order)s)
         """, variables={
             'board_id': board_id,
             'status_id': status_id,
-            'title': title
+            'title': title,
+            'text': text,
+            'card_order': card_order
         }
     )
+    return ('index.html')

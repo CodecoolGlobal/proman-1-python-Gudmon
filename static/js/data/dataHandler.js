@@ -22,15 +22,16 @@ export let dataHandler = {
     createNewBoard: async function (boardTitle) {
         // creates new board, saves it and calls the callback function with its data
     },
-    createNewCard: async function (cardTitle, cardText, boardId, statusId, cardOrder) {
+    createNewCard: async function (board_id, status_id, title, text, card_order) {
         const payload = {
-            "board_id": boardId,
-            "status_id": statusId,
-            "title": cardTitle,
-            "text": cardText,
-            "card_order": cardOrder
+            "board_id": board_id,
+            "status_id": status_id,
+            "title": title,
+            "text": text,
+            "card_order": card_order
         };
-        return await apiPut(`/api/boards/${boardId}/cards/`, payload);
+        console.log('POST')
+        return await apiPost(`/api/boards/${board_id}/cards/`, payload);
     },
 };
 
