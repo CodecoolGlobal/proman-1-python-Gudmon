@@ -56,7 +56,7 @@ function boardBuilder(board) {
                                         <label for="text">Text</label>
                                         <input type="text" id="text" name="text" required=""><br>
                                         <input type="hidden" id="card_oder" name="card_order" value="1"><br>
-                                        <button type="submit">Submit</button>
+                                        <button class="new_card_submit" data-new-submit="${board.id}" onclick="addToDB()">Submit</button>
                                         </form>
 </form>
                                       </div>
