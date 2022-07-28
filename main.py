@@ -36,16 +36,21 @@ def get_boards():
     return queries.get_boards()
 
 
-@app.route("/api/boards/<int:board_id>/cards/")
+@app.route("/api/boards/<int:board_id>/cards/", methods = ["GET", "POST"])
 @json_response
 def get_cards_for_board(board_id: int):
     """
     All cards that belongs to a board
     :param board_id: id of the parent board
     """
+    if request.method == "GET":
+        return queries.get_cards_for_board(board_id)
 
-    return queries.get_cards_for_board(board_id)
-
+    elif request.method == "POST":
+        return request.json
+        # board = request.json["board_id"]
+        # status = request.json["status_id"]
+        # title = request.json["title"]
 
 @app.route("/api/boards/${statusId}/cards/")
 @json_response
