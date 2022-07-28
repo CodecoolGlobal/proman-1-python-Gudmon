@@ -62,7 +62,8 @@ def get_cards_for_board(board_id: int):
         print(f'text : {text}')
         card_order = request.form.get('card_order')
         print(f'card_order : {card_order}')
-        return queries.add_new_card(board_id, status_id, title, text, card_order)
+        queries.add_new_card(board_id, status_id, title, text, card_order)
+        return render_template('index.html')
 
     """
     All cards that belongs to a board
@@ -71,13 +72,13 @@ def get_cards_for_board(board_id: int):
     if request.method == "GET":
         return queries.get_cards_for_board(board_id)
 
-    elif request.method == "POST":
+    """elif request.method == "POST":
         board = request.json["board_id"]
         status = request.json["status_id"]
         title = request.json["title"]
         text = request.json["text"]
         card_order = request.json["card_order"]
-        return queries.add_new_card(board, status, title, text, card_order)
+        return queries.add_new_card(board, status, title, text, card_order)"""
 
 
 @app.route("/api/boards/${statusId}/cards/")

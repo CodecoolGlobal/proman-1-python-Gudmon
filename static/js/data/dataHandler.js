@@ -31,7 +31,7 @@ export let dataHandler = {
             "card_order": card_order
         };
         console.log('POST')
-        return await apiPost(`/api/boards/${board_id}/cards/`, payload);
+        return await apiGet(`/api/boards/${board_id}/cards/`);
     },
 };
 

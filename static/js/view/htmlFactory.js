@@ -60,7 +60,6 @@ function boardBuilder(board) {
                                         <input type="hidden" id="card_oder" name="card_order" value="1"><br>
                                         <button type="submit" class="submitBtn${board.id}">Submit</button>
                                         </form>
-</form>
                                       </div>
                                     
                                     </div>

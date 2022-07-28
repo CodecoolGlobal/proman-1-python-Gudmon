@@ -47,4 +47,5 @@ def add_new_card(board_id, status_id, title, text, card_order):
             'card_order': card_order
         }
     )
-    return ('index.html')
+
+
